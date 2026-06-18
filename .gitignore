@@ -1,0 +1,38 @@
+# --- Build e Dependências ---
+target/
+build/
+.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+# --- IDEs (IntelliJ, Eclipse, NetBeans, VS Code) ---
+.idea/
+*.iml
+*.iws
+*.ipr
+.settings/
+.classpath
+.project
+.factorypath
+.apt_generated
+.springBeans
+.sts4-cache
+.nb-gradle/
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+.vscode/
+
+# --- Logs e Arquivos de Sistema ---
+*.log
+*.tmp
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- Arquivos de Segurança e Ambiente ---
+*.env
+.env
