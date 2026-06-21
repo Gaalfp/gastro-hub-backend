@@ -1,4 +1,4 @@
-package com.techchallenge.gastrohub.infrastructure.controller;
+package com.techchallenge.gastrohub.infrastructure.api.controller;
 
 import com.techchallenge.gastrohub.application.dto.RestauranteRequestDTO;
 import com.techchallenge.gastrohub.application.dto.RestauranteResponseDTO;

@@ -1,6 +1,6 @@
-package com.techchallenge.gastrohub.infrastructure.persistence.repository;
+package com.techchallenge.gastrohub.infrastructure.database.repository;
 
-import com.techchallenge.gastrohub.infrastructure.persistence.entity.UsuarioEntity;
+import com.techchallenge.gastrohub.infrastructure.database.entity.UsuarioEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

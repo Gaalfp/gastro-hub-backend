@@ -1,4 +1,4 @@
-package com.techchallenge.gastrohub.infrastructure.persistence.entity;
+package com.techchallenge.gastrohub.infrastructure.database.entity;
 
 import jakarta.persistence.*;
 import java.util.UUID;

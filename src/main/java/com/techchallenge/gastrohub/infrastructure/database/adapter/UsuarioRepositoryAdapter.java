@@ -1,10 +1,10 @@
-package com.techchallenge.gastrohub.infrastructure.persistence.adapter;
+package com.techchallenge.gastrohub.infrastructure.database.adapter;
 
 import com.techchallenge.gastrohub.application.gateway.UsuarioGateway;
 import com.techchallenge.gastrohub.domain.entity.Usuario;
-import com.techchallenge.gastrohub.infrastructure.persistence.entity.TipoUsuarioEntity;
-import com.techchallenge.gastrohub.infrastructure.persistence.entity.UsuarioEntity;
-import com.techchallenge.gastrohub.infrastructure.persistence.repository.UsuarioRepository;
+import com.techchallenge.gastrohub.infrastructure.database.entity.TipoUsuarioEntity;
+import com.techchallenge.gastrohub.infrastructure.database.entity.UsuarioEntity;
+import com.techchallenge.gastrohub.infrastructure.database.repository.UsuarioRepository;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
