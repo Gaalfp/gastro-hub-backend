@@ -2,6 +2,8 @@ package com.techchallenge.gastrohub.infrastructure.database.adapter;
 
 import com.techchallenge.gastrohub.application.gateway.RestauranteGateway;
 import com.techchallenge.gastrohub.domain.entity.Restaurante;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import com.techchallenge.gastrohub.infrastructure.database.entity.RestauranteEntity;
 import com.techchallenge.gastrohub.infrastructure.database.entity.UsuarioEntity;
 import com.techchallenge.gastrohub.infrastructure.database.repository.RestauranteRepository;
@@ -31,6 +33,12 @@ public class RestauranteRepositoryAdapter implements RestauranteGateway {
     @Override
     public Optional<Restaurante> buscarPorId(UUID id) {
         return repository.findById(id).map(this::toDomain);
+    }
+
+    @Override
+    public Page<Restaurante> buscarTodos(Pageable pageable) {
+        return repository.findAll(pageable)
+                .map(this::toDomain);
     }
 
     private RestauranteEntity toEntity(Restaurante domain) {

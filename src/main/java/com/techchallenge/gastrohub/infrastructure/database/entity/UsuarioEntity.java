@@ -36,11 +36,9 @@ public class UsuarioEntity {
     @Column(nullable = false)
     private boolean ativo = true;
 
-    // Construtor padrão obrigatório pelo JPA
     public UsuarioEntity() {
     }
 
-    // Construtor completo
     public UsuarioEntity(UUID id, String nome, String email, String login, String cpf, String senhaHash, String endereco, TipoUsuarioEntity tipoUsuario, boolean ativo) {
         this.id = id;
         this.nome = nome;

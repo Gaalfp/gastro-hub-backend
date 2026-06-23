@@ -1,24 +1,22 @@
-package com.techchallenge.gastrohub.infrastructure.database.entity;
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+package com.techchallenge.gastrohub.domain.entity;
 
 import java.util.UUID;
 
-@Entity
-@Table(name = "tipo_usuario")
-public class TipoUsuarioEntity {
-
-    @Id
+public class TipoUsuario {
     private UUID id;
     private String nome;
+    private boolean ativo;
 
-    @Column(columnDefinition = "boolean default true")
-    private boolean ativo = true;
+    public TipoUsuario(UUID id, String nome) {
+        this.id = id;
+        this.nome = nome;
+        this.ativo = true;
+    }
 
-    public TipoUsuarioEntity() {
+    public TipoUsuario(UUID id, String nome, boolean ativo) {
+        this.id = id;
+        this.nome = nome;
+        this.ativo = ativo;
     }
 
     public UUID getId() {

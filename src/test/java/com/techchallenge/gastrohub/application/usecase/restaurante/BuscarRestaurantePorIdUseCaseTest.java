@@ -1,0 +1,78 @@
+package com.techchallenge.gastrohub.application.usecase.restaurante;
+
+import com.techchallenge.gastrohub.application.dto.RestauranteResponseDTO;
+import com.techchallenge.gastrohub.application.gateway.RestauranteGateway;
+import com.techchallenge.gastrohub.domain.entity.Restaurante;
+import jakarta.persistence.EntityNotFoundException;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+import java.util.Optional;
+import java.util.UUID;
+
+import static org.assertj.core.api.Assertions.*;
+import static org.mockito.Mockito.*;
+
+@ExtendWith(MockitoExtension.class)
+class BuscarRestaurantePorIdUseCaseTest {
+
+    @Mock
+    private RestauranteGateway restauranteGateway;
+
+    private BuscarRestaurantePorIdUseCase useCase;
+
+    @BeforeEach
+    void setUp() {
+        useCase = new BuscarRestaurantePorIdUseCase(restauranteGateway);
+    }
+
+    @Test
+    void deveRetornarRestauranteQuandoEncontrado() {
+        UUID restauranteId = UUID.randomUUID();
+        UUID donoId = UUID.randomUUID();
+
+        Restaurante restaurante = new Restaurante(
+                restauranteId,
+                "Cantina Italiana",
+                "Rua das Pizzas, 123",
+                "Italiana",
+                "18:00 - 23:00",
+                donoId,
+                true
+        );
+
+        when(restauranteGateway.buscarPorId(restauranteId))
+                .thenReturn(Optional.of(restaurante));
+
+        RestauranteResponseDTO resultado = useCase.executar(restauranteId);
+
+        assertThat(resultado).isNotNull();
+        assertThat(resultado.id()).isEqualTo(restauranteId);
+        assertThat(resultado.nome()).isEqualTo("Cantina Italiana");
+        assertThat(resultado.endereco()).isEqualTo("Rua das Pizzas, 123");
+        assertThat(resultado.tipoCozinha()).isEqualTo("Italiana");
+        assertThat(resultado.horarioFuncionamento()).isEqualTo("18:00 - 23:00");
+        assertThat(resultado.donoId()).isEqualTo(donoId);
+
+        verify(restauranteGateway).buscarPorId(restauranteId);
+        verifyNoMoreInteractions(restauranteGateway);
+    }
+
+    @Test
+    void deveLancarExcecaoQuandoRestauranteNaoEncontrado() {
+        UUID restauranteId = UUID.randomUUID();
+
+        when(restauranteGateway.buscarPorId(restauranteId))
+                .thenReturn(Optional.empty());
+
+        assertThatThrownBy(() -> useCase.executar(restauranteId))
+                .isInstanceOf(EntityNotFoundException.class)
+                .hasMessage("Restaurante não encontrado com o ID informado.");
+
+        verify(restauranteGateway).buscarPorId(restauranteId);
+        verifyNoMoreInteractions(restauranteGateway);
+    }
+}
