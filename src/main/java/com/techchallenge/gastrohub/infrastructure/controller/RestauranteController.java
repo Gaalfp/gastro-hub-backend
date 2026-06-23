@@ -2,6 +2,7 @@ package com.techchallenge.gastrohub.infrastructure.controller;
 
 import com.techchallenge.gastrohub.application.dto.RestauranteRequestDTO;
 import com.techchallenge.gastrohub.application.dto.RestauranteResponseDTO;
+import com.techchallenge.gastrohub.application.usecase.restaurante.AtualizarRestauranteUseCase;
 import com.techchallenge.gastrohub.application.usecase.restaurante.BuscarRestaurantePorIdUseCase;
 import com.techchallenge.gastrohub.application.usecase.restaurante.CriarRestauranteUseCase;
 import com.techchallenge.gastrohub.application.usecase.restaurante.ListarRestaurantesUseCase;
@@ -26,11 +27,13 @@ public class RestauranteController {
     private final CriarRestauranteUseCase criarRestauranteUseCase;
     private final ListarRestaurantesUseCase listarRestaurantesUseCase;
     private final BuscarRestaurantePorIdUseCase buscarRestaurantePorIdUseCase;
+    private final AtualizarRestauranteUseCase atualizarRestauranteUseCase;
 
-    public RestauranteController(CriarRestauranteUseCase criarRestauranteUseCase, ListarRestaurantesUseCase listarRestaurantesUseCase, BuscarRestaurantePorIdUseCase buscarRestaurantePorIdUseCase) {
+    public RestauranteController(CriarRestauranteUseCase criarRestauranteUseCase, ListarRestaurantesUseCase listarRestaurantesUseCase, BuscarRestaurantePorIdUseCase buscarRestaurantePorIdUseCase, AtualizarRestauranteUseCase atualizarRestauranteUseCase) {
         this.criarRestauranteUseCase = criarRestauranteUseCase;
         this.listarRestaurantesUseCase = listarRestaurantesUseCase;
         this.buscarRestaurantePorIdUseCase = buscarRestaurantePorIdUseCase;
+        this.atualizarRestauranteUseCase = atualizarRestauranteUseCase;
     }
 
     @Operation(summary = "Criar um novo restaurante", description = "Registra um novo restaurante no sistema vinculado a um usuário dono.")
@@ -70,6 +73,21 @@ public class RestauranteController {
     @GetMapping("/{id}")
     public ResponseEntity<RestauranteResponseDTO> buscarRestaurantePorId(@PathVariable UUID id) {
         RestauranteResponseDTO response = buscarRestaurantePorIdUseCase.executar(id);
+        return ResponseEntity.ok(response);
+    }
+
+    @Operation(
+            summary = "Atualizar restaurante",
+            description = "Atualiza os dados de um restaurante existente a partir do seu identificador."
+    )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Restaurante atualizado com sucesso"),
+            @ApiResponse(responseCode = "400", description = "Dados inválidos ou ID informado é inválido"),
+            @ApiResponse(responseCode = "404", description = "Restaurante não encontrado")
+    })
+    @PutMapping("/{id}")
+    public ResponseEntity<RestauranteResponseDTO> atualizar(@PathVariable UUID id, @RequestBody RestauranteRequestDTO requestDTO) {
+        RestauranteResponseDTO response = atualizarRestauranteUseCase.executar(id, requestDTO);
         return ResponseEntity.ok(response);
     }
 }
