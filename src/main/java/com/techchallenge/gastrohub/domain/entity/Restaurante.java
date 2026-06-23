@@ -21,6 +21,9 @@ public class Restaurante {
         this.ativo = ativo;
     }
 
+    public Restaurante() {
+    }
+
     public void desativar() {
         this.ativo = false;
     }

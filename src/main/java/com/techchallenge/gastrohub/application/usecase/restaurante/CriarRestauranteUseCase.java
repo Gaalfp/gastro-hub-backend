@@ -1,4 +1,4 @@
-package com.techchallenge.gastrohub.application.usecase;
+package com.techchallenge.gastrohub.application.usecase.restaurante;
 
 import com.techchallenge.gastrohub.application.dto.RestauranteRequestDTO;
 import com.techchallenge.gastrohub.application.dto.RestauranteResponseDTO;
