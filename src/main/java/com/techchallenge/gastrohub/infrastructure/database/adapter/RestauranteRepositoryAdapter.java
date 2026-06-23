@@ -1,12 +1,12 @@
-package com.techchallenge.gastrohub.infrastructure.persistence.adapter;
+package com.techchallenge.gastrohub.infrastructure.database.adapter;
 
 import com.techchallenge.gastrohub.application.gateway.RestauranteGateway;
 import com.techchallenge.gastrohub.domain.entity.Restaurante;
-import com.techchallenge.gastrohub.infrastructure.persistence.entity.RestauranteEntity;
-import com.techchallenge.gastrohub.infrastructure.persistence.entity.UsuarioEntity;
-import com.techchallenge.gastrohub.infrastructure.persistence.repository.RestauranteRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import com.techchallenge.gastrohub.infrastructure.database.entity.RestauranteEntity;
+import com.techchallenge.gastrohub.infrastructure.database.entity.UsuarioEntity;
+import com.techchallenge.gastrohub.infrastructure.database.repository.RestauranteRepository;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
