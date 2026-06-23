@@ -2,6 +2,7 @@ package com.techchallenge.gastrohub.infrastructure.controller;
 
 import com.techchallenge.gastrohub.application.dto.RestauranteRequestDTO;
 import com.techchallenge.gastrohub.application.dto.RestauranteResponseDTO;
+import com.techchallenge.gastrohub.application.usecase.restaurante.BuscarRestaurantePorIdUseCase;
 import com.techchallenge.gastrohub.application.usecase.restaurante.CriarRestauranteUseCase;
 import com.techchallenge.gastrohub.application.usecase.restaurante.ListarRestaurantesUseCase;
 import io.swagger.v3.oas.annotations.Operation;
@@ -15,6 +16,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 @RestController
 @RequestMapping("/restaurantes")
 @Tag(name = "Restaurantes", description = "Endpoints para o gerenciamento de restaurantes")
@@ -22,10 +25,12 @@ public class RestauranteController {
 
     private final CriarRestauranteUseCase criarRestauranteUseCase;
     private final ListarRestaurantesUseCase listarRestaurantesUseCase;
+    private final BuscarRestaurantePorIdUseCase buscarRestaurantePorIdUseCase;
 
-    public RestauranteController(CriarRestauranteUseCase criarRestauranteUseCase, ListarRestaurantesUseCase listarRestaurantesUseCase) {
+    public RestauranteController(CriarRestauranteUseCase criarRestauranteUseCase, ListarRestaurantesUseCase listarRestaurantesUseCase, BuscarRestaurantePorIdUseCase buscarRestaurantePorIdUseCase) {
         this.criarRestauranteUseCase = criarRestauranteUseCase;
         this.listarRestaurantesUseCase = listarRestaurantesUseCase;
+        this.buscarRestaurantePorIdUseCase = buscarRestaurantePorIdUseCase;
     }
 
     @Operation(summary = "Criar um novo restaurante", description = "Registra um novo restaurante no sistema vinculado a um usuário dono.")
@@ -50,6 +55,21 @@ public class RestauranteController {
     @GetMapping
     public ResponseEntity<Page<RestauranteResponseDTO>> listarRestaurantes(@PageableDefault(size = 10) Pageable pageable) {
         Page<RestauranteResponseDTO> response = listarRestaurantesUseCase.executar(pageable);
+        return ResponseEntity.ok(response);
+    }
+
+    @Operation(
+            summary = "Buscar restaurante por ID",
+            description = "Retorna os dados de um restaurante específico a partir do seu identificador."
+    )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Restaurante encontrado com sucesso"),
+            @ApiResponse(responseCode = "404", description = "Restaurante não encontrado"),
+            @ApiResponse(responseCode = "400", description = "ID informado é inválido")
+    })
+    @GetMapping("/{id}")
+    public ResponseEntity<RestauranteResponseDTO> buscarRestaurantePorId(@PathVariable UUID id) {
+        RestauranteResponseDTO response = buscarRestaurantePorIdUseCase.executar(id);
         return ResponseEntity.ok(response);
     }
 }
