@@ -92,12 +92,30 @@ public class RestauranteController {
         return ResponseEntity.ok(response);
     }
 
+    @Operation(
+            summary = "Desativar restaurante",
+            description = "Realiza a desativação lógica de um restaurante a partir do seu identificador."
+    )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "204", description = "Restaurante desativado com sucesso"),
+            @ApiResponse(responseCode = "404", description = "Restaurante não encontrado"),
+            @ApiResponse(responseCode = "400", description = "ID informado é inválido")
+    })
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> desativar(@PathVariable UUID id) {
         desativarRestauranteUseCase.executar(id);
         return ResponseEntity.noContent().build();
     }
 
+    @Operation(
+            summary = "Ativar restaurante",
+            description = "Reativa um restaurante previamente desativado a partir do seu identificador."
+    )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "204", description = "Restaurante ativado com sucesso"),
+            @ApiResponse(responseCode = "404", description = "Restaurante não encontrado"),
+            @ApiResponse(responseCode = "400", description = "ID informado é inválido")
+    })
     @PatchMapping("/{id}/ativar")
     public ResponseEntity<Void> ativar(@PathVariable UUID id) {
         ativarRestauranteUseCase.executar(id);
