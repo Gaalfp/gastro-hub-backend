@@ -2,10 +2,7 @@ package com.techchallenge.gastrohub.infrastructure.controller;
 
 import com.techchallenge.gastrohub.application.dto.RestauranteRequestDTO;
 import com.techchallenge.gastrohub.application.dto.RestauranteResponseDTO;
-import com.techchallenge.gastrohub.application.usecase.restaurante.AtualizarRestauranteUseCase;
-import com.techchallenge.gastrohub.application.usecase.restaurante.BuscarRestaurantePorIdUseCase;
-import com.techchallenge.gastrohub.application.usecase.restaurante.CriarRestauranteUseCase;
-import com.techchallenge.gastrohub.application.usecase.restaurante.ListarRestaurantesUseCase;
+import com.techchallenge.gastrohub.application.usecase.restaurante.*;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -28,12 +25,16 @@ public class RestauranteController {
     private final ListarRestaurantesUseCase listarRestaurantesUseCase;
     private final BuscarRestaurantePorIdUseCase buscarRestaurantePorIdUseCase;
     private final AtualizarRestauranteUseCase atualizarRestauranteUseCase;
+    private final DesativarRestauranteUseCase desativarRestauranteUseCase;
+    private final AtivarRestauranteUseCase ativarRestauranteUseCase;
 
-    public RestauranteController(CriarRestauranteUseCase criarRestauranteUseCase, ListarRestaurantesUseCase listarRestaurantesUseCase, BuscarRestaurantePorIdUseCase buscarRestaurantePorIdUseCase, AtualizarRestauranteUseCase atualizarRestauranteUseCase) {
+    public RestauranteController(CriarRestauranteUseCase criarRestauranteUseCase, ListarRestaurantesUseCase listarRestaurantesUseCase, BuscarRestaurantePorIdUseCase buscarRestaurantePorIdUseCase, AtualizarRestauranteUseCase atualizarRestauranteUseCase, DesativarRestauranteUseCase desativarRestauranteUseCase, AtivarRestauranteUseCase ativarRestauranteUseCase) {
         this.criarRestauranteUseCase = criarRestauranteUseCase;
         this.listarRestaurantesUseCase = listarRestaurantesUseCase;
         this.buscarRestaurantePorIdUseCase = buscarRestaurantePorIdUseCase;
         this.atualizarRestauranteUseCase = atualizarRestauranteUseCase;
+        this.desativarRestauranteUseCase = desativarRestauranteUseCase;
+        this.ativarRestauranteUseCase = ativarRestauranteUseCase;
     }
 
     @Operation(summary = "Criar um novo restaurante", description = "Registra um novo restaurante no sistema vinculado a um usuário dono.")
@@ -89,5 +90,17 @@ public class RestauranteController {
     public ResponseEntity<RestauranteResponseDTO> atualizar(@PathVariable UUID id, @RequestBody RestauranteRequestDTO requestDTO) {
         RestauranteResponseDTO response = atualizarRestauranteUseCase.executar(id, requestDTO);
         return ResponseEntity.ok(response);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> desativar(@PathVariable UUID id) {
+        desativarRestauranteUseCase.executar(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PatchMapping("/{id}/ativar")
+    public ResponseEntity<Void> ativar(@PathVariable UUID id) {
+        ativarRestauranteUseCase.executar(id);
+        return ResponseEntity.noContent().build();
     }
 }

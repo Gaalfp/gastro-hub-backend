@@ -28,6 +28,10 @@ public class Restaurante {
         this.ativo = false;
     }
 
+    public void ativar() {
+        this.ativo = true;
+    }
+
     public UUID getId() {
         return id;
     }
