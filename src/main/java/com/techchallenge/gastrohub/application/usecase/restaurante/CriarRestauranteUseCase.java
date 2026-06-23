@@ -1,10 +1,11 @@
-package com.techchallenge.gastrohub.application.usecase;
+package com.techchallenge.gastrohub.application.usecase.restaurante;
 
 import com.techchallenge.gastrohub.application.dto.RestauranteRequestDTO;
 import com.techchallenge.gastrohub.application.dto.RestauranteResponseDTO;
 import com.techchallenge.gastrohub.application.gateway.RestauranteGateway;
 import com.techchallenge.gastrohub.application.gateway.UsuarioGateway;
 import com.techchallenge.gastrohub.domain.entity.Restaurante;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -20,7 +21,7 @@ public class CriarRestauranteUseCase {
 
     public RestauranteResponseDTO executar(RestauranteRequestDTO dto) {
         usuarioGateway.buscarPorId(dto.donoId())
-                .orElseThrow(() -> new IllegalArgumentException("Usuário (Dono) não encontrado com o ID informado."));
+                .orElseThrow(() -> new EntityNotFoundException("Usuário (Dono) não encontrado com o ID informado."));
 
         Restaurante novoRestaurante = new Restaurante(
                 null,

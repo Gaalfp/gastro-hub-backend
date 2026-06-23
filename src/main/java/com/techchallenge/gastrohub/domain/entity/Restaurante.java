@@ -21,8 +21,15 @@ public class Restaurante {
         this.ativo = ativo;
     }
 
+    public Restaurante() {
+    }
+
     public void desativar() {
         this.ativo = false;
+    }
+
+    public void ativar() {
+        this.ativo = true;
     }
 
     public UUID getId() {
