@@ -5,6 +5,9 @@ import com.techchallenge.gastrohub.application.dto.UsuarioResponseDTO;
 import com.techchallenge.gastrohub.application.gateway.UsuarioGateway;
 import com.techchallenge.gastrohub.domain.entity.Usuario;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.UUID;
 
 @Service
 public class CriarUsuarioUseCase {
@@ -15,22 +18,28 @@ public class CriarUsuarioUseCase {
         this.usuarioGateway = usuarioGateway;
     }
 
-    public UsuarioResponseDTO executar(UsuarioRequestDTO dto) {
-        String senhaHasheada = dto.senha() + "_HASHED";
+    @Transactional
+    public UsuarioResponseDTO executar(UsuarioRequestDTO request) {
+        String cpfLimpo = request.cpf() != null ? request.cpf().replaceAll("[^0-9]", "") : "";
+
+        if (cpfLimpo.length() != 11) {
+            throw new IllegalArgumentException("CPF inválido: deve conter 11 dígitos numéricos.");
+        }
 
         Usuario novoUsuario = new Usuario(
-                null,
-                dto.nome(),
-                dto.email(),
-                dto.login(),
-                dto.cpf(),
-                senhaHasheada,
-                dto.endereco(),
-                dto.tipoUsuarioId(),
+                UUID.randomUUID(),
+                request.nome(),
+                request.email(),
+                request.login(),
+                cpfLimpo,
+                request.senha(),
+                request.endereco(),
+                request.tipoUsuarioId(),
                 true
         );
 
         Usuario usuarioSalvo = usuarioGateway.salvar(novoUsuario);
+
         return UsuarioResponseDTO.fromDomain(usuarioSalvo);
     }
 }
