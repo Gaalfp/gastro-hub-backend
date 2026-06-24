@@ -5,9 +5,8 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.5.14</version>
-        <relativePath/> <!-- lookup parent from repository -->
-    </parent>
+        <version>3.2.5</version>
+        <relativePath/> </parent>
     <groupId>com.techchallenge.gastrohub</groupId>
     <artifactId>techchallenge_gastro-hub</artifactId>
     <version>0.0.1-SNAPSHOT</version>
@@ -26,9 +25,12 @@
         <tag/>
         <url/>
     </scm>
+
     <properties>
         <java.version>21</java.version>
+        <lombok.version>1.18.32</lombok.version>
     </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -93,6 +95,7 @@
                     </excludes>
                 </configuration>
             </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -108,6 +111,7 @@
                                 <path>
                                     <groupId>org.projectlombok</groupId>
                                     <artifactId>lombok</artifactId>
+                                    <version>${lombok.version}</version>
                                 </path>
                                 <path>
                                     <groupId>org.mapstruct</groupId>
@@ -128,6 +132,7 @@
                                 <path>
                                     <groupId>org.projectlombok</groupId>
                                     <artifactId>lombok</artifactId>
+                                    <version>${lombok.version}</version>
                                 </path>
                                 <path>
                                     <groupId>org.mapstruct</groupId>
@@ -160,13 +165,12 @@
                 </executions>
                 <configuration>
                     <excludes>
-                        <exclude>**/adapter/input/controller/request/**</exclude>
-                        <exclude>**/adapter/input/controller/response/**</exclude>
-                        <exclude>**/adapter/output/entity/**</exclude>
-                        <exclude>**/core/model/**</exclude>
-                        <exclude>**/config/**</exclude>
-                        <exclude>**/mapper/**</exclude>
-                        <exclude>**/RouteConstants.class</exclude>
+                        <exclude>**/application/dto/**</exclude>
+                        <exclude>**/domain/entity/**</exclude>
+                        <exclude>**/infrastructure/persistence/entity/**</exclude>
+                        <exclude>**/infrastructure/config/**</exclude>
+                        <exclude>**/infrastructure/exception/**</exclude>
+                        <exclude>**/*Application.class</exclude>
                     </excludes>
                 </configuration>
             </plugin>
