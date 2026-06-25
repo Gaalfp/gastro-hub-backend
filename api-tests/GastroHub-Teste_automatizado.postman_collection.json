@@ -1,0 +1,121 @@
+{
+	"info": {
+		"name": "Gastro-Hub API - Tech Challenge (Fase 2)",
+		"description": "Validação com criação encadeada e limpeza reversa.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "01 - Tipos de Usuário",
+			"item": [
+				{
+					"name": "Criar Tipo",
+					"event": [{ "listen": "test", "script": { "exec": ["pm.test(\"Status 201\", () => pm.response.to.have.status(201));", "pm.collectionVariables.set(\"tipoUsuarioId\", pm.response.json().id);"] } }],
+					"request": { "method": "POST", "body": { "mode": "raw", "raw": "{\n  \"nome\": \"DONO_RESTAURANTE_TESTE\"\n}", "options": { "raw": { "language": "json" } } }, "url": { "raw": "{{url}}/tipos-usuario", "host": ["{{url}}"], "path": ["tipos-usuario"] } }
+				},
+				{
+					"name": "Buscar Tipo",
+					"event": [{ "listen": "test", "script": { "exec": ["pm.test(\"Status 200\", () => pm.response.to.have.status(200));"] } }],
+					"request": { "method": "GET", "url": { "raw": "{{url}}/tipos-usuario/{{tipoUsuarioId}}", "host": ["{{url}}"], "path": ["tipos-usuario", "{{tipoUsuarioId}}"] } }
+				},
+				{
+					"name": "Atualizar Tipo",
+					"event": [{ "listen": "test", "script": { "exec": ["pm.test(\"Status 200\", () => pm.response.to.have.status(200));"] } }],
+					"request": { "method": "PUT", "body": { "mode": "raw", "raw": "{\n  \"nome\": \"DONO_RESTAURANTE_PREMIUM\"\n}", "options": { "raw": { "language": "json" } } }, "url": { "raw": "{{url}}/tipos-usuario/{{tipoUsuarioId}}", "host": ["{{url}}"], "path": ["tipos-usuario", "{{tipoUsuarioId}}"] } }
+				}
+			]
+		},
+		{
+			"name": "02 - Usuários",
+			"item": [
+				{
+					"name": "Criar Usuário",
+					"event": [{ "listen": "test", "script": { "exec": ["pm.test(\"Status 201\", () => pm.response.to.have.status(201));", "pm.collectionVariables.set(\"usuarioId\", pm.response.json().id);"] } }],
+					"request": { "method": "POST", "body": { "mode": "raw", "raw": "{\n  \"nome\": \"Jeniffer Bandeira\",\n  \"email\": \"jeniffer@test.com\",\n  \"login\": \"jeniffer.teste\",\n  \"cpf\": \"123.456.789-00\",\n  \"senha\": \"123456\",\n  \"endereco\": \"Rua Rio, 1\",\n  \"tipo_usuario_id\": \"{{tipoUsuarioId}}\"\n}", "options": { "raw": { "language": "json" } } }, "url": { "raw": "{{url}}/usuarios", "host": ["{{url}}"], "path": ["usuarios"] } }
+				},
+				{
+					"name": "Buscar Usuário",
+					"event": [{ "listen": "test", "script": { "exec": ["pm.test(\"Status 200\", () => pm.response.to.have.status(200));"] } }],
+					"request": { "method": "GET", "url": { "raw": "{{url}}/usuarios/{{usuarioId}}", "host": ["{{url}}"], "path": ["usuarios", "{{usuarioId}}"] } }
+				},
+				{
+					"name": "Atualizar Usuário",
+					"event": [{ "listen": "test", "script": { "exec": ["pm.test(\"Status 200\", () => pm.response.to.have.status(200));"] } }],
+					"request": { "method": "PUT", "body": { "mode": "raw", "raw": "{\n  \"nome\": \"Jeniffer Nobrega Bandeira\",\n  \"email\": \"jeniffer.nobrega@test.com\",\n  \"login\": \"jeniffer.teste\",\n  \"cpf\": \"123.456.789-00\",\n  \"senha\": \"123456\",\n  \"endereco\": \"Avenida Rio, 100\",\n  \"tipo_usuario_id\": \"{{tipoUsuarioId}}\"\n}", "options": { "raw": { "language": "json" } } }, "url": { "raw": "{{url}}/usuarios/{{usuarioId}}", "host": ["{{url}}"], "path": ["usuarios", "{{usuarioId}}"] } }
+				}
+			]
+		},
+		{
+			"name": "03 - Restaurantes",
+			"item": [
+				{
+					"name": "Criar Restaurante",
+					"event": [{ "listen": "test", "script": { "exec": ["pm.test(\"Status 201\", () => pm.response.to.have.status(201));", "pm.collectionVariables.set(\"restauranteId\", pm.response.json().id);"] } }],
+					"request": { "method": "POST", "body": { "mode": "raw", "raw": "{\n  \"nome\": \"GastroHub Grill\",\n  \"endereco\": \"Rua das Carnes, 500\",\n  \"tipo_cozinha\": \"Churrascaria\",\n  \"horario_funcionamento\": \"11:00 - 23:00\",\n  \"dono_id\": \"{{usuarioId}}\"\n}", "options": { "raw": { "language": "json" } } }, "url": { "raw": "{{url}}/restaurantes", "host": ["{{url}}"], "path": ["restaurantes"] } }
+				},
+				{
+					"name": "Buscar Restaurante",
+					"event": [{ "listen": "test", "script": { "exec": ["pm.test(\"Status 200\", () => pm.response.to.have.status(200));"] } }],
+					"request": { "method": "GET", "url": { "raw": "{{url}}/restaurantes/{{restauranteId}}", "host": ["{{url}}"], "path": ["restaurantes", "{{restauranteId}}"] } }
+				},
+				{
+					"name": "Atualizar Restaurante",
+					"event": [{ "listen": "test", "script": { "exec": ["pm.test(\"Status 200\", () => pm.response.to.have.status(200));"] } }],
+					"request": { "method": "PUT", "body": { "mode": "raw", "raw": "{\n  \"nome\": \"GastroHub Premium Grill\",\n  \"endereco\": \"Rua das Carnes, 500\",\n  \"tipo_cozinha\": \"Churrascaria Gourmet\",\n  \"horario_funcionamento\": \"11:00 - 00:00\",\n  \"dono_id\": \"{{usuarioId}}\"\n}", "options": { "raw": { "language": "json" } } }, "url": { "raw": "{{url}}/restaurantes/{{restauranteId}}", "host": ["{{url}}"], "path": ["restaurantes", "{{restauranteId}}"] } }
+				}
+			]
+		},
+		{
+			"name": "04 - Itens do Cardápio",
+			"item": [
+				{
+					"name": "Criar Item de Cardápio",
+					"event": [{ "listen": "test", "script": { "exec": ["pm.test(\"Status 201\", () => pm.response.to.have.status(201));", "pm.collectionVariables.set(\"itemId\", pm.response.json().id);"] } }],
+					"request": { "method": "POST", "body": { "mode": "raw", "raw": "{\n  \"restaurante_id\": \"{{restauranteId}}\",\n  \"nome\": \"Picanha Premium\",\n  \"descricao\": \"Grelhada\",\n  \"preco\": 120.50,\n  \"apenas_local\": false,\n  \"caminho_foto\": \"/img/picanha.jpg\"\n}", "options": { "raw": { "language": "json" } } }, "url": { "raw": "{{url}}/restaurantes/{{restauranteId}}/itens", "host": ["{{url}}"], "path": ["restaurantes", "{{restauranteId}}", "itens"] } }
+				},
+				{
+					"name": "Atualizar Item",
+					"event": [{ "listen": "test", "script": { "exec": ["pm.test(\"Status 200\", () => pm.response.to.have.status(200));"] } }],
+					"request": { "method": "PUT", "body": { "mode": "raw", "raw": "{\n  \"restaurante_id\": \"{{restauranteId}}\",\n  \"nome\": \"Picanha Premium\",\n  \"descricao\": \"Grelhada com acompanhamentos\",\n  \"preco\": 150.00,\n  \"apenas_local\": true,\n  \"caminho_foto\": \"/img/picanha.jpg\"\n}", "options": { "raw": { "language": "json" } } }, "url": { "raw": "{{url}}/itens/{{itemId}}", "host": ["{{url}}"], "path": ["itens", "{{itemId}}"] } }
+				}
+			]
+		},
+		{
+			"name": "05 - A Grande Limpeza",
+			"item": [
+				{
+					"name": "Inativar Item do Cardápio",
+					"event": [{ "listen": "test", "script": { "exec": ["pm.test(\"Status de Sucesso\", () => pm.expect(pm.response.code).to.be.oneOf([200, 204]));"] } }],
+					"request": { "method": "DELETE", "url": { "raw": "{{url}}/itens/{{itemId}}", "host": ["{{url}}"], "path": ["itens", "{{itemId}}"] } }
+				},
+				{
+					"name": "Inativar Restaurante",
+					"event": [{ "listen": "test", "script": { "exec": ["pm.test(\"Status 204\", () => pm.response.to.have.status(204));"] } }],
+					"request": { "method": "DELETE", "url": { "raw": "{{url}}/restaurantes/{{restauranteId}}", "host": ["{{url}}"], "path": ["restaurantes", "{{restauranteId}}"] } }
+				},
+				{
+					"name": "Reativar Restaurante",
+					"event": [{ "listen": "test", "script": { "exec": ["pm.test(\"Status 204\", () => pm.response.to.have.status(204));"] } }],
+					"request": { "method": "PATCH", "url": { "raw": "{{url}}/restaurantes/{{restauranteId}}/ativar", "host": ["{{url}}"], "path": ["restaurantes", "{{restauranteId}}", "ativar"] } }
+				},
+				{
+					"name": "Inativar Usuário",
+					"event": [{ "listen": "test", "script": { "exec": ["pm.test(\"Status 204\", () => pm.response.to.have.status(204));"] } }],
+					"request": { "method": "DELETE", "url": { "raw": "{{url}}/usuarios/{{usuarioId}}", "host": ["{{url}}"], "path": ["usuarios", "{{usuarioId}}"] } }
+				},
+				{
+					"name": "Inativar Tipo de Usuário",
+					"event": [{ "listen": "test", "script": { "exec": ["pm.test(\"Status 204\", () => pm.response.to.have.status(204));"] } }],
+					"request": { "method": "DELETE", "url": { "raw": "{{url}}/tipos-usuario/{{tipoUsuarioId}}", "host": ["{{url}}"], "path": ["tipos-usuario", "{{tipoUsuarioId}}"] } }
+				}
+			]
+		}
+	],
+	"variable": [
+		{ "key": "url", "value": "http://localhost:8080" },
+		{ "key": "tipoUsuarioId", "value": "" },
+		{ "key": "usuarioId", "value": "" },
+		{ "key": "restauranteId", "value": "" },
+		{ "key": "itemId", "value": "" }
+	]
+}
