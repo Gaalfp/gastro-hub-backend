@@ -1,4 +1,4 @@
-package com.techchallenge.gastrohub.application.usecase;
+package com.techchallenge.gastrohub.application.usecase.itemcardapio;
 
 import com.techchallenge.gastrohub.application.dto.ItemCardapioResponseDTO;
 import com.techchallenge.gastrohub.application.gateway.ItemCardapioGateway;

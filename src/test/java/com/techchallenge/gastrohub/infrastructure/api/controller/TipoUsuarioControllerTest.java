@@ -2,8 +2,8 @@ package com.techchallenge.gastrohub.infrastructure.api.controller;
 
 import com.techchallenge.gastrohub.application.dto.TipoUsuarioRequestDTO;
 import com.techchallenge.gastrohub.application.dto.TipoUsuarioResponseDTO;
-import com.techchallenge.gastrohub.application.usecase.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.techchallenge.gastrohub.application.usecase.usuario.*;
 import com.techchallenge.gastrohub.infrastructure.controller.TipoUsuarioController;
 import com.techchallenge.gastrohub.infrastructure.exception.GlobalExceptionHandler;
 import jakarta.persistence.EntityNotFoundException;

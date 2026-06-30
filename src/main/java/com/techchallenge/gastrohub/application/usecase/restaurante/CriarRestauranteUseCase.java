@@ -6,9 +6,7 @@ import com.techchallenge.gastrohub.application.gateway.RestauranteGateway;
 import com.techchallenge.gastrohub.application.gateway.UsuarioGateway;
 import com.techchallenge.gastrohub.domain.entity.Restaurante;
 import jakarta.persistence.EntityNotFoundException;
-import org.springframework.stereotype.Service;
 
-@Service
 public class CriarRestauranteUseCase {
 
     private final RestauranteGateway restauranteGateway;

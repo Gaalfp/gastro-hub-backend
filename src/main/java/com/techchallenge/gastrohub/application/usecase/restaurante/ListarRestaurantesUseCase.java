@@ -5,9 +5,7 @@ import com.techchallenge.gastrohub.application.gateway.RestauranteGateway;
 import com.techchallenge.gastrohub.domain.entity.Restaurante;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Service;
 
-@Service
 public class ListarRestaurantesUseCase {
 
     private final RestauranteGateway restauranteGateway;

@@ -2,10 +2,10 @@ package com.techchallenge.gastrohub.infrastructure.api.controller;
 
 import com.techchallenge.gastrohub.application.dto.UsuarioRequestDTO;
 import com.techchallenge.gastrohub.application.dto.UsuarioResponseDTO;
-import com.techchallenge.gastrohub.application.usecase.AtualizarUsuarioUseCase;
-import com.techchallenge.gastrohub.application.usecase.BuscarUsuarioUseCase;
-import com.techchallenge.gastrohub.application.usecase.CriarUsuarioUseCase;
-import com.techchallenge.gastrohub.application.usecase.InativarUsuarioUseCase;
+import com.techchallenge.gastrohub.application.usecase.usuario.AtualizarUsuarioUseCase;
+import com.techchallenge.gastrohub.application.usecase.usuario.BuscarUsuarioUseCase;
+import com.techchallenge.gastrohub.application.usecase.usuario.CriarUsuarioUseCase;
+import com.techchallenge.gastrohub.application.usecase.usuario.InativarUsuarioUseCase;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
