@@ -51,7 +51,6 @@ public class UsuarioEntity {
         this.ativo = ativo;
     }
 
-    // Getters e Setters
     public UUID getId() {
         return id;
     }

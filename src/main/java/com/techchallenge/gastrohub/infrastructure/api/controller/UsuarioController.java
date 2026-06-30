@@ -58,7 +58,7 @@ public class UsuarioController {
     @Operation(summary = "Buscar usuário por ID", description = "Busca os detalhes de um usuário específico utilizando o seu UUID.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Usuário encontrado com sucesso"),
-            @ApiResponse(responseCode = "404", description = "Usuário não encontrado") // Previsão para quando criarmos o handler de exceções
+            @ApiResponse(responseCode = "404", description = "Usuário não encontrado")
     })
     @GetMapping("/{id}")
     public ResponseEntity<UsuarioResponseDTO> buscarPorId(@PathVariable UUID id) {
