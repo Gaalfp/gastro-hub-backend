@@ -1,13 +1,11 @@
-package com.techchallenge.gastrohub.application.usecase;
+package com.techchallenge.gastrohub.application.usecase.itemcardapio;
 
 import com.techchallenge.gastrohub.application.dto.ItemCardapioRequestDTO;
 import com.techchallenge.gastrohub.application.dto.ItemCardapioResponseDTO;
 import com.techchallenge.gastrohub.application.gateway.ItemCardapioGateway;
 import com.techchallenge.gastrohub.application.gateway.RestauranteGateway;
 import com.techchallenge.gastrohub.domain.entity.ItemCardapio;
-import org.springframework.stereotype.Service;
 
-@Service
 public class CriarItemCardapioUseCase {
 
 	private final ItemCardapioGateway itemGateway;

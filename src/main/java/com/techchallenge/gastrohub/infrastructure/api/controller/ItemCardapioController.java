@@ -2,10 +2,9 @@ package com.techchallenge.gastrohub.infrastructure.api.controller;
 
 import com.techchallenge.gastrohub.application.dto.ItemCardapioRequestDTO;
 import com.techchallenge.gastrohub.application.dto.ItemCardapioResponseDTO;
-import com.techchallenge.gastrohub.application.usecase.AtualizarItemCardapioUseCase;
-import com.techchallenge.gastrohub.application.usecase.BuscarItensPorRestauranteUseCase;
-import com.techchallenge.gastrohub.application.usecase.CriarItemCardapioUseCase;
-import com.techchallenge.gastrohub.application.usecase.InativarItemCardapioUseCase;
+import com.techchallenge.gastrohub.application.usecase.itemcardapio.AtualizarItemCardapioUseCase;
+import com.techchallenge.gastrohub.application.usecase.itemcardapio.CriarItemCardapioUseCase;
+import com.techchallenge.gastrohub.application.usecase.itemcardapio.InativarItemCardapioUseCase;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -23,12 +22,12 @@ import java.util.UUID;
 public class ItemCardapioController {
 
     private final CriarItemCardapioUseCase criarUseCase;
-    private final BuscarItensPorRestauranteUseCase buscarUseCase;
+    private final AtualizarItemCardapioUseCase.BuscarItensPorRestauranteUseCase buscarUseCase;
     private final AtualizarItemCardapioUseCase atualizarUseCase;
     private final InativarItemCardapioUseCase inativarUseCase;
 
     public ItemCardapioController(CriarItemCardapioUseCase criarUseCase,
-                                  BuscarItensPorRestauranteUseCase buscarUseCase,
+                                  AtualizarItemCardapioUseCase.BuscarItensPorRestauranteUseCase buscarUseCase,
                                   AtualizarItemCardapioUseCase atualizarUseCase,
                                   InativarItemCardapioUseCase inativarUseCase) {
         this.criarUseCase = criarUseCase;

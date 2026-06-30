@@ -1,11 +1,9 @@
-package com.techchallenge.gastrohub.application.usecase;
+package com.techchallenge.gastrohub.application.usecase.itemcardapio;
 
 import com.techchallenge.gastrohub.application.gateway.ItemCardapioGateway;
-import org.springframework.stereotype.Service;
 
 import java.util.UUID;
 
-@Service
 public class InativarItemCardapioUseCase {
 
     private final ItemCardapioGateway itemGateway;

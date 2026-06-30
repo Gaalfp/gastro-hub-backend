@@ -4,11 +4,9 @@ import com.techchallenge.gastrohub.application.dto.RestauranteResponseDTO;
 import com.techchallenge.gastrohub.application.gateway.RestauranteGateway;
 import com.techchallenge.gastrohub.domain.entity.Restaurante;
 import jakarta.persistence.EntityNotFoundException;
-import org.springframework.stereotype.Service;
 
 import java.util.UUID;
 
-@Service
 public class DesativarRestauranteUseCase {
 
     private final RestauranteGateway restauranteGateway;

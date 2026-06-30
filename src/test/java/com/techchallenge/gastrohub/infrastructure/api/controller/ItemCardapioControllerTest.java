@@ -2,10 +2,9 @@ package com.techchallenge.gastrohub.infrastructure.api.controller;
 
 import com.techchallenge.gastrohub.application.dto.ItemCardapioRequestDTO;
 import com.techchallenge.gastrohub.application.dto.ItemCardapioResponseDTO;
-import com.techchallenge.gastrohub.application.usecase.AtualizarItemCardapioUseCase;
-import com.techchallenge.gastrohub.application.usecase.BuscarItensPorRestauranteUseCase;
-import com.techchallenge.gastrohub.application.usecase.CriarItemCardapioUseCase;
-import com.techchallenge.gastrohub.application.usecase.InativarItemCardapioUseCase;
+import com.techchallenge.gastrohub.application.usecase.itemcardapio.AtualizarItemCardapioUseCase;
+import com.techchallenge.gastrohub.application.usecase.itemcardapio.CriarItemCardapioUseCase;
+import com.techchallenge.gastrohub.application.usecase.itemcardapio.InativarItemCardapioUseCase;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.techchallenge.gastrohub.infrastructure.exception.GlobalExceptionHandler;
 import jakarta.persistence.EntityNotFoundException;
@@ -41,7 +40,7 @@ class ItemCardapioControllerTest {
     private CriarItemCardapioUseCase criarUseCase;
 
     @MockBean
-    private BuscarItensPorRestauranteUseCase buscarUseCase;
+    private AtualizarItemCardapioUseCase.BuscarItensPorRestauranteUseCase buscarUseCase;
 
     @MockBean
     private AtualizarItemCardapioUseCase atualizarUseCase;

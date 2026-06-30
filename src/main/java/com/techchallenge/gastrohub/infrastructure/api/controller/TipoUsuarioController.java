@@ -2,7 +2,7 @@ package com.techchallenge.gastrohub.infrastructure.controller;
 
 import com.techchallenge.gastrohub.application.dto.TipoUsuarioRequestDTO;
 import com.techchallenge.gastrohub.application.dto.TipoUsuarioResponseDTO;
-import com.techchallenge.gastrohub.application.usecase.*;
+import com.techchallenge.gastrohub.application.usecase.usuario.*;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;

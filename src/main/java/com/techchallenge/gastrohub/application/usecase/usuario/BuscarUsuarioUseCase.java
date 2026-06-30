@@ -1,14 +1,12 @@
-package com.techchallenge.gastrohub.application.usecase;
+package com.techchallenge.gastrohub.application.usecase.usuario;
 
 import com.techchallenge.gastrohub.application.dto.UsuarioResponseDTO;
 import com.techchallenge.gastrohub.application.gateway.UsuarioGateway;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-@Service
 public class BuscarUsuarioUseCase {
 
     private final UsuarioGateway usuarioGateway;
